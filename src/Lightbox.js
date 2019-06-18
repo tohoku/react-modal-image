@@ -117,6 +117,11 @@ export default class Lightbox extends Component {
     }));
   };
 
+  handleImageLoaded = () => {
+    if (this.props.onLoaded)
+      this.props.onLoaded();
+  };
+
   render() {
     const { medium, large, alt, onClose, hideDownload, hideZoom } = this.props;
     const { move, zoomed } = this.state;
@@ -158,6 +163,7 @@ export default class Lightbox extends Component {
                   }px, ${move.y}px, 0)`
                 }}
                 handleDoubleClick={this.toggleZoom}
+                onLoaded={this.handleImageLoaded}
               />
             )}
             {!zoomed && (
@@ -167,6 +173,7 @@ export default class Lightbox extends Component {
                 src={medium || large}
                 handleDoubleClick={this.toggleZoom}
                 contextMenu={!medium}
+                onLoaded={this.handleImageLoaded}
               />
             )}
           </div>

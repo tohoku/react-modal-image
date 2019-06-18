@@ -9,6 +9,8 @@ export default class Image extends Component {
 
   handleOnLoad = () => {
     this.setState({ loading: false });
+    if (this.props.onLoaded)
+      this.props.onLoaded();
   };
 
   handleOnContextMenu = event => {

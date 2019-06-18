@@ -5,12 +5,17 @@ import Lightbox from "./Lightbox";
 export { default as Lightbox } from "./Lightbox";
 
 export default class extends Component {
-  state = { modalOpen: false };
+  state = {modalOpen: false };
 
   toggleModal = () => {
     this.setState(prev => ({
       modalOpen: !prev.modalOpen
     }));
+  };
+
+  handleLoaded = () => {
+    if (this.props.onLoaded)
+      this.props.onLoaded();
   };
 
   render() {
@@ -46,6 +51,7 @@ export default class extends Component {
             large={large}
             alt={alt}
             onClose={this.toggleModal}
+            onLoaded={this.handleLoaded}
             hideDownload={hideDownload}
             hideZoom={hideZoom}
           />
